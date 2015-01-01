@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SNPData.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Questions</h2>
+@if(User.IsInRole("Admin")){
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </th>
+        @if(User.IsInRole("Admin")){
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        }
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionText)
+        </td>
+        @if(User.IsInRole("Admin")){
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        }
+        <td>
+
+            @Html.ActionLink("View Answers", "Details", new { id = item.QuestionID }) 
+
+            @if(User.IsInRole("Admin"))
+            {
+
+            @Html.ActionLink("Edit ", "Edit", new { id=item.QuestionID }) 
+            @Html.ActionLink("Delete ", "Delete", new { id=item.QuestionID })
+            
+            }
+        </td>
+    </tr>
+}
+
+</table>

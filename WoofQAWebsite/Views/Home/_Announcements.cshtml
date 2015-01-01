@@ -1,0 +1,33 @@
+﻿@using SNPData;
+@model IEnumerable<Announcement>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Model != null) { 
+<div>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+}

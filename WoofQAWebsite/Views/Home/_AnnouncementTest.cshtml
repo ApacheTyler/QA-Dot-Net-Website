@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SNPData.Announcement>
+
+<h2>Annoucements</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+
+        @if(item.IsActive == true){
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+         }
+        
+        
+    </tr>
+}
+
+</table>

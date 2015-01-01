@@ -1,0 +1,70 @@
+﻿@model SNPData.Answer
+
+@{
+    ViewBag.Title = "EditTest";
+}
+
+<h2>EditTest</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Answer</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.AnswerID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionAnsID, "QuestionAnsID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("QuestionAnsID", String.Empty)
+                @Html.ValidationMessageFor(model => model.QuestionAnsID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerText, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AnswerText)
+                @Html.ValidationMessageFor(model => model.AnswerText)
+            </div>
+        </div>
+
+        @if(User.IsInRole("Admin")){
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsActive)
+                @Html.ValidationMessageFor(model => model.IsActive)
+            </div>
+        </div>
+        }
+
+        @if(User.IsInRole("Admin")){
+        <div class="form-group">
+            @Html.LabelFor(model => model.Like, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Like)
+                @Html.ValidationMessageFor(model => model.Like)
+            </div>
+        </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
